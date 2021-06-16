@@ -16,6 +16,13 @@ a:hover {
 background: #000000c4;
 color: #fff;}
 </style>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		let params = (new URL(document.location)).searchParams;
+		let id = parseInt(params.get("id"));
+		return_id(id);
+	});
+</script>
 
 <div class="content-wrapper" >
 	<!-- Content Header (Page header) -->
@@ -25,7 +32,7 @@ color: #fff;}
 	<!-- Main content -->
 	<section class="content">
 		<div class="container-fluid ">
-			<h2 id="title">VNPT Tỉnh, thành phố</h2>
+			<h2 id="title"></h2>
     <div class="container bg-dark text-white">
         <nav>
             <ul class="nav nav-tabs" id="data_ul">
@@ -35,187 +42,199 @@ color: #fff;}
 
         </div>
         <script>
-        	
-            var title = document.getElementById('title').textContent;
-            console.log(title);
-            var data_ul = document.getElementById("data_ul");
-            var detail_data = document.getElementById("detail");
-            $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
-                /* console.log(json); */ // this will show the info it in firebug console
-                var idx = 0;
-                function format_date(x) {
-                	let date = new Date("1899-12-30");
-        			date.setDate(date.getDate() + x);
-        			if(x=="x" || x==""){
-        				return "x";
-        			}else if(typeof x === 'undefined'){
-        				return "";
-        			}
-        			else{
-        				return date.toLocaleDateString();
-        			}
-				}
-				
-                json.forEach((item) => {
-                
-                    if (item["Khách hàng"] == title) {
-                    	/* console.log(item["Khách hàng"]); */
-                    	/* console.log(item);  */
-                    	
-                        idx++;
-                        let row1 = '<li class="nav-item">'+
-             			'<a class="nav-link" href="#'+idx +'" onclick="return class_fade('+idx+')">'+item['Dự án/Gói thầu']+'</a>'
-                		+'</li>';
-                        data_ul.innerHTML += row1;
-                		let row2="";
-                        if (idx == 1) {
-                           
-                            	row2 +='<div id="'+idx+'" class="container tab-pane active" name="abc"><br>'
-                                   +'<div>' 
-                                        +'<p>Người phụ trách: '+item["PIC"]+'</p>'
-                                        +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
-                                        +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
-                                        +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
-                                        +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
-                                        
-                                    +'</div>'
-                                    +'<div class="table-responsive">'
-                                         +'<table class="table table-bordered table-dark">'
-                                            +'<thead>'
-                                                +'<tr>'
-                                                    +'<th colspan="3">Kế hoạch nghiệm thu</th>'
-                                                    +'<th colspan="2">Thanh toán tạm ứng</th>'
-                                                    +'<th colspan="2">Thanh toán DAC</th>'
-                                                    +'<th colspan="2">Thanh toán PAC</th>'
-                                                    +'<th colspan="2">Thanh toán FAC</th>'
-                                                +'</tr>'
-                                                +'<tr>'
-                                                    +'<th>DAC</th>'
-                                                    +'<th>PAC</th>'
-                                                    +'<th>FAC</th>'
-                                                    +'<th>Số tiền</th>'
-                                                    +'<th>Kế hoạch</th>'
-                                                    +'<th>Số tiền</th>'
-                                                    +'<th>Kế hoạch</th>'
-                                                    +'<th>Số tiền</th>'
-                                                    +'<th>Kế hoạch</th>'
-                                                    +'<th>Số tiền</th>'
-                                                    +'<th>Kế hoạch</th>'
-                                                    +'</tr>'
-                                            +'</thead>'
-                                            +'<tbody>'
-                                                +'<td>'+format_date(item["DAC"])+'</td>'
-                                                +'<td>'+format_date(item["PAC"])+'</td>'
-                                                +'<td>'+format_date(item["FAC"])+'</td>'
-                                                +'<!--Kế hoạch nghiệm thu -->'
-                                                +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
-                                                +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
-                                               
-                                                <!-- Thanh toán tạm ứng -->
-                                                +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
-                                                +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
-                                                
-                                                <!-- Thanh toán DAC -->
-                                                +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
-                                                +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
-                                                
-                                                <!-- Thanh toán PAC -->
-                                                +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
-                                                +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
-                                                
-                                                <!-- Thanh toán FAC -->
-                                            +'</tbody>'
-                                        +'</table>' 
-                                    +'</div>'
-                                    +'<div class="d-flex">'
-                                        +'<div style="width: 70%;">'
-                                            +'<p>Tình trạng:</p>'
-                                            +'<p> '+item["Tình trạng"]+'</p>'
-                                        +'</div>'
-                                        +'<div class="pl-5">'
-                                            +'<p>Kết quả thực hiện kế hoạch:</p>'
-                                            +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
-                                        +'</div>'
-                                    +'</div>'
-                                +'</div>'
-                                ;
-
-                        } else {
-                            row2 += '<div id="'+idx+'" class="container tab-pane fade" name="abc"><br>'
-                                +'<div>' 
-                                +'<p>Người phụ trách: '+item["PIC"]+'</p>'
-                                +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
-                                +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
-                                +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
-                                +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
+        	function return_id(id){
+        		 var title = document.getElementById('title');
+                 var data_ul = document.getElementById("data_ul");
+                 var detail_data = document.getElementById("detail");
+                 $.getJSON('<c:url value="/assets/user/upload/data-test.json"/>', function(json) {
+                	 var idx = 0;
+                function groupArrayOfObjects(list, key) {
+				                    return list.reduce(function(rv, x) {
+				                        (rv[x[key]] = rv[x[key]] || []).push(x);
+				                        return rv;
+				                    }, {});
+				                };
+				     var groupedPeople = groupArrayOfObjects(json, "Khách hàng");
+				     
+				     var title_key = Object.keys(groupedPeople);
+                     let row = title_key[id-1];
+	            	  
+	            	   title.innerHTML +=row;
+                     function format_date(x) {
+                     	let date = new Date("1899-12-30");
+             			date.setDate(date.getDate() + x);
+             			if(x=="x" || x==""){
+             				return "x";
+             			}else if(typeof x === 'undefined'){
+             				return "";
+             			}
+             			else{
+             				return date.toLocaleDateString();
+             			}
+     				}
+     				
+                     json.forEach((item) => {
+                     
+                         if (item["MKH"] == id) {
+                        	 
+                         	/* console.log(item);  */
+                             idx++;
+                 
+                             let row1 = '<li class="nav-item">'+
+                  			'<a class="nav-link" href="#'+idx +'" onclick=" return class_fade('+idx+')">'+item['Dự án/Gói thầu']+'</a>'
+                     		+'</li>';
+                             data_ul.innerHTML += row1;
+                     		let row2="";
+                             if (idx == 1) {
                                 
-                            +'</div>'
-                            +'<div class="table-responsive">'
-                                 +'<table class="table table-bordered table-dark">'
-                                    +'<thead>'
-                                        +'<tr>'
-                                            +'<th colspan="3">Kế hoạch nghiệm thu</th>'
-                                            +'<th colspan="2">Thanh toán tạm ứng</th>'
-                                            +'<th colspan="2">Thanh toán DAC</th>'
-                                            +'<th colspan="2">Thanh toán PAC</th>'
-                                            +'<th colspan="2">Thanh toán FAC</th>'
-                                        +'</tr>'
-                                        +'<tr>'
-                                            +'<th>DAC</th>'
-                                            +'<th>PAC</th>'
-                                            +'<th>FAC</th>'
-                                            +'<th>Số tiền</th>'
-                                            +'<th>Kế hoạch</th>'
-                                            +'<th>Số tiền</th>'
-                                            +'<th>Kế hoạch</th>'
-                                            +'<th>Số tiền</th>'
-                                            +'<th>Kế hoạch</th>'
-                                            +'<th>Số tiền</th>'
-                                            +'<th>Kế hoạch</th>'
-                                            +'</tr>'
-                                    +'</thead>'
-                                    +'<tbody>'
-                                        +'<td>'+format_date(item["DAC"])+'</td>'
-                                        +'<td>'+format_date(item["PAC"])+'</td>'
-                                        +'<td>'+format_date(item["FAC"])+'</td>'
-                                        +'<!--Kế hoạch nghiệm thu -->'
-                                        +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
-                                        +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
-                                       
-                                        <!-- Thanh toán tạm ứng -->
-                                        +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
-                                        +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
-                                        
-                                        <!-- Thanh toán DAC -->
-                                        +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
-                                        +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
-                                        
-                                        <!-- Thanh toán PAC -->
-                                        +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
-                                        +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
-                                        
-                                        <!-- Thanh toán FAC -->
-                                    +'</tbody>'
-                                +'</table>' 
-                            +'</div>'
-                            +'<div class="d-flex">'
-                                +'<div style="width: 70%;">'
-                                    +'<p>Tình trạng:</p>'
-                                    +'<p> '+item["Tình trạng"]+'</p>'
-                                +'</div>'
-                                +'<div class="pl-5">'
-                                    +'<p>Kết quả thực hiện kế hoạch:</p>'
-                                    +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
-                                +'</div>'
-                            +'</div>'
-                        +'</div>';
+                                 	row2 +='<div id="'+idx+'" class="container tab-pane active" name="abc"><br>'
+                                        +'<div>' 
+                                             +'<p>Người phụ trách: '+item["PIC"]+'</p>'
+                                             +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
+                                             +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
+                                             +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
+                                             +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
+                                             
+                                         +'</div>'
+                                         +'<div class="table-responsive">'
+                                              +'<table class="table table-bordered table-dark">'
+                                                 +'<thead>'
+                                                     +'<tr>'
+                                                         +'<th colspan="3">Kế hoạch nghiệm thu</th>'
+                                                         +'<th colspan="2">Thanh toán tạm ứng</th>'
+                                                         +'<th colspan="2">Thanh toán DAC</th>'
+                                                         +'<th colspan="2">Thanh toán PAC</th>'
+                                                         +'<th colspan="2">Thanh toán FAC</th>'
+                                                     +'</tr>'
+                                                     +'<tr>'
+                                                         +'<th>DAC</th>'
+                                                         +'<th>PAC</th>'
+                                                         +'<th>FAC</th>'
+                                                         +'<th>Số tiền</th>'
+                                                         +'<th>Kế hoạch</th>'
+                                                         +'<th>Số tiền</th>'
+                                                         +'<th>Kế hoạch</th>'
+                                                         +'<th>Số tiền</th>'
+                                                         +'<th>Kế hoạch</th>'
+                                                         +'<th>Số tiền</th>'
+                                                         +'<th>Kế hoạch</th>'
+                                                         +'</tr>'
+                                                 +'</thead>'
+                                                 +'<tbody>'
+                                                     +'<td>'+format_date(item["DAC"])+'</td>'
+                                                     +'<td>'+format_date(item["PAC"])+'</td>'
+                                                     +'<td>'+format_date(item["FAC"])+'</td>'
+                                                     +'<!--Kế hoạch nghiệm thu -->'
+                                                     +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
+                                                     +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
+                                                    
+                                                     <!-- Thanh toán tạm ứng -->
+                                                     +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
+                                                     +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
+                                                     
+                                                     <!-- Thanh toán DAC -->
+                                                     +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
+                                                     +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
+                                                     
+                                                     <!-- Thanh toán PAC -->
+                                                     +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
+                                                     +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
+                                                     
+                                                     <!-- Thanh toán FAC -->
+                                                 +'</tbody>'
+                                             +'</table>' 
+                                         +'</div>'
+                                         +'<div class="d-flex">'
+                                             +'<div style="width: 70%;">'
+                                                 +'<p>Tình trạng:</p>'
+                                                 +'<p> '+item["Tình trạng"]+'</p>'
+                                             +'</div>'
+                                             +'<div class="pl-5">'
+                                                 +'<p>Kết quả thực hiện kế hoạch:</p>'
+                                                 +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
+                                             +'</div>'
+                                         +'</div>'
+                                     +'</div>'
+                                     ;
 
-                        }
-                        detail_data.innerHTML += row2;                                     
-                    }
+                             } else {
+                                 row2 += '<div id="'+idx+'" class="container tab-pane fade" name="abc"><br>'
+                                     +'<div>' 
+                                     +'<p>Người phụ trách: '+item["PIC"]+'</p>'
+                                     +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
+                                     +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
+                                     +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
+                                     +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
+                                     
+                                 +'</div>'
+                                 +'<div class="table-responsive">'
+                                      +'<table class="table table-bordered table-dark">'
+                                         +'<thead>'
+                                             +'<tr>'
+                                                 +'<th colspan="3">Kế hoạch nghiệm thu</th>'
+                                                 +'<th colspan="2">Thanh toán tạm ứng</th>'
+                                                 +'<th colspan="2">Thanh toán DAC</th>'
+                                                 +'<th colspan="2">Thanh toán PAC</th>'
+                                                 +'<th colspan="2">Thanh toán FAC</th>'
+                                             +'</tr>'
+                                             +'<tr>'
+                                                 +'<th>DAC</th>'
+                                                 +'<th>PAC</th>'
+                                                 +'<th>FAC</th>'
+                                                 +'<th>Số tiền</th>'
+                                                 +'<th>Kế hoạch</th>'
+                                                 +'<th>Số tiền</th>'
+                                                 +'<th>Kế hoạch</th>'
+                                                 +'<th>Số tiền</th>'
+                                                 +'<th>Kế hoạch</th>'
+                                                 +'<th>Số tiền</th>'
+                                                 +'<th>Kế hoạch</th>'
+                                                 +'</tr>'
+                                         +'</thead>'
+                                         +'<tbody>'
+                                             +'<td>'+format_date(item["DAC"])+'</td>'
+                                             +'<td>'+format_date(item["PAC"])+'</td>'
+                                             +'<td>'+format_date(item["FAC"])+'</td>'
+                                             +'<!--Kế hoạch nghiệm thu -->'
+                                             +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
+                                             +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
+                                            
+                                             <!-- Thanh toán tạm ứng -->
+                                             +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
+                                             +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
+                                             
+                                             <!-- Thanh toán DAC -->
+                                             +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
+                                             +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
+                                             
+                                             <!-- Thanh toán PAC -->
+                                             +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
+                                             +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
+                                             
+                                             <!-- Thanh toán FAC -->
+                                         +'</tbody>'
+                                     +'</table>' 
+                                 +'</div>'
+                                 +'<div class="d-flex">'
+                                     +'<div style="width: 70%;">'
+                                         +'<p>Tình trạng:</p>'
+                                         +'<p> '+item["Tình trạng"]+'</p>'
+                                     +'</div>'
+                                     +'<div class="pl-5">'
+                                         +'<p>Kết quả thực hiện kế hoạch:</p>'
+                                         +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
+                                     +'</div>'
+                                 +'</div>'
+                             +'</div>';
 
-                })
-            });
+                             }
+                             detail_data.innerHTML += row2;                                     
+                         }
+
+                     })
+                 });
+        	}
+           
         </script>
     </div>
     <script>
