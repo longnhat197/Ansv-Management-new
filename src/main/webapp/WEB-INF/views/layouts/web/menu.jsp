@@ -125,7 +125,7 @@ a.nav-link p {
 						<script>
 						 var data_sheet_1 = document.getElementById('data_sheet_1');
 
-				            $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
+						 $.getJSON('<c:url value="/assets/user/upload/data-test.json"/>', function(json) {
 				                function groupArrayOfObjects(list, key) {
 				                    return list.reduce(function(rv, x) {
 				                        (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -133,13 +133,13 @@ a.nav-link p {
 				                    }, {});
 				                };
 				                var groupedPeople = groupArrayOfObjects(json, "Khách hàng");
-				                console.log(groupedPeople); //will be the Males 
+				               /*  console.log(groupedPeople); */ //will be the Males 
 				                var dem = Object.keys(groupedPeople).length;
 				                var item = Object.keys(groupedPeople);
-				                console.log(item);
+				                /* console.log(item); */
 				                for (i = 0; i < dem; i++) {
-				                    let row = '<li class="nav-item"><a href="#"'
-										+'class="nav-link d-flex " data-toggle="tooltip" data-html="true"'
+				                    let row = '<li class="nav-item"><a href="vnpt_tinh_thanh_pho?id='+(i+1)+'"'
+										+'class="nav-link d-flex" id="sheet1-'+(i+1)+'" data-toggle="tooltip"  data-html="true" onclick = "return menu_link('+(i+1)+') "'
 											+'title="'
 										+'<p>Tổng số dự án: 2</p>'
 										+'<p>Số dự án chậm tiến độ: 0</p>'
@@ -156,6 +156,11 @@ a.nav-link p {
 				                    data_sheet_1.innerHTML += row;
 				                }
 				            });
+				            function menu_link(id) {
+				        		//window.open("vnpt_tinh_thanh_pho?id="+id); //Link đến trang khác với tab mới
+				        		window.location.href = "vnpt_tinh_thanh_pho?id="+id; //Link đến trang khác ở tab hiện tại
+				        	  	//location.replace("https://www.w3schools.com"); //Link đến trang khác thay thế trang hiện tại
+				        	};
 						</script>
 						
 						
