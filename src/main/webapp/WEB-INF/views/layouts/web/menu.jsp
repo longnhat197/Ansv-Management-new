@@ -116,7 +116,7 @@ a.nav-link p {
 				<li class="nav-item"><a href="#" class="nav-link d-flex"> <i
 						class="nav-icon fas fa-table"></i>
 						<p class="text-capitalize">
-							Báo cáo tồng tại vướng mắc các dự án triển khai tuần 4 - tháng 4
+							Báo cáo tồn tại vướng mắc các dự án triển khai tuần 4 - tháng 4
 							<i class="right fas fa-angle-left"></i> <span
 								class="badge badge-info">23</span>
 						</p>
