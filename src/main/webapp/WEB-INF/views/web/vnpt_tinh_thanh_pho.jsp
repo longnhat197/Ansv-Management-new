@@ -240,7 +240,7 @@ color: #fff;}
     <script>
         function class_fade(id) {
             var element = document.getElementById(id);
-			console.log(element);
+			
             var element_2 = document.getElementsByName("abc");
 
             var numItems = document.getElementsByClassName(" tab-pane ");
