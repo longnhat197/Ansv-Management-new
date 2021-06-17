@@ -107,7 +107,7 @@ a.nav-link p {
 		<!-- Sidebar Menu -->
 		<nav class="mt-2">
 			<ul class="nav nav-pills nav-sidebar flex-column"
-				data-widget="treeview" role="menu" data-accordion="false">
+				data-widget="treeview" id="ul_global" role="menu" data-accordion="false">
 				<!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 				<li class="nav-header">Báo cáo</li>
@@ -352,6 +352,64 @@ a.nav-link p {
 								</p>
 						</a></li>
 					</ul></li>
+				<li class="nav-header">Người phụ trách (báo cáo 1)</li>
+				<ul id="ul_1" class="nav nav-pills nav-sidebar flex-column">
+				
+				</ul>
+				<script type="text/javascript">
+				var data_pci_sheet_1 = document.getElementById('ul_1');
+				
+
+	            $.getJSON('<c:url value="/assets/user/upload/data-test.json"/>', function(json) {
+	                function groupArrayOfObjects(list, key) {
+	                    return list.reduce(function(rv, x) {
+	                        (rv[x[key]] = rv[x[key]] || []).push(x);
+	                        return rv;
+	                    }, {});
+	                }; //Lấy dữ liệu theo key tùy chọn
+	                var groupedPIC = groupArrayOfObjects(json, "PIC");
+	                var dem1 = Object.keys(groupedPIC).length;
+	                var item1 = Object.keys(groupedPIC); //Lọc rheo key của object
+	                /* console.log(groupedPIC); */ //will be the Males
+	                
+	                var project1 = Object.values(groupedPIC); // Lọc theo value của object
+	                
+	                for (i = 0; i < dem1; i++) {
+	                    let row ='<li class="nav-item"><a href="#" class="nav-link d-flex"> '
+	                    +'<i class="nav-icon fas fa-user"></i>'
+	                    +'<p>'
+	                    +item1[i]  + '<i class="fas fa-angle-left right"></i> '
+	                    +'<span class="badge badge-info right">2</span>'
+	                    +'</p>'
+	                    +'</a>'	
+	                    +'<ul class="nav nav-treeview " id="pic1-'+i+'" style="font-size: 13px;">'
+	                    +'</ul>'
+	                    +'</li>'
+	                            ;
+	                    data_pci_sheet_1.innerHTML += row;
+	                    var detai_pci1 = document.getElementById("pic1-" + i);
+	                    for (j = 0; j < project1[i].length; j++) {
+	                    	
+	                        let row2 = '<li class="nav-item "><a href="#-'+project1[i][j]["STT"]+'" target="_blank" onclick = "return project_link_sheet_1('+project1[i][j]["STT"]+') " class="nav-link d-flex">'
+	                        +'<i class="far fa-hand-point-right nav-icon" style="font-size: 1rem; margin-left: 6%;"></i>'
+	                        +'<p>'
+	                        +project1[i][j]["Dự án/Gói thầu"]
+	                        +'</p>'
+	                        +'</a>'
+	                        +'</li>'
+	                    ;
+	                        detai_pci1.innerHTML += row2;
+	                    }
+
+	                }
+	            });
+	            function project_link_sheet_1(id) {
+	        		window.open("bao_cao_sheet_1?id="+id); //Link đến trang khác với tab mới
+	        		//window.location.href = "http://www.w3schools.com"; //Link đến trang khác ở tab hiện tại
+	        	  	//location.replace("https://www.w3schools.com"); //Link đến trang khác thay thế trang hiện tại
+	        	}
+				</script>
+				
 				<li class="nav-header">Người phụ trách</li>
 				<li class="nav-item"><a href="#" class="nav-link d-flex"> <i
 						class="nav-icon fas fa-user"></i>

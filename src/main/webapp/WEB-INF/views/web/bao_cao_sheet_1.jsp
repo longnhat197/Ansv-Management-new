@@ -44,7 +44,7 @@
 	       var detail_data = document.getElementById("detail_data");
 	       $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
 	           // console.log(json);
-	           console.log(id);
+	           
 	           function format_date(x) {
                	let date = new Date("1899-12-30");
        			date.setDate(date.getDate() + x);
