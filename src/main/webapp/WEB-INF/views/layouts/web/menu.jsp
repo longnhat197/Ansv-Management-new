@@ -4,51 +4,51 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- ===== Menu ===== -->
 <style>
-.btn-circle {
-	width: 30px;
-	height: 30px;
-	text-align: center;
-	padding: 6px 0;
-	font-size: 12px;
-	line-height: 1.428571429;
-	border-radius: 15px;
-}
-
-span.btn-circle a {
-	color: white;
-}
-
-.btn-circle.btn-lg {
-	width: 40px;
-	height: 40px;
-	padding: 10px 16px;
-	font-size: 18px;
-	line-height: 1.33;
-	border-radius: 25px;
-}
-
-.btn-circle.btn-xl {
-	width: 50px;
-	height: 50px;
-	padding: 10px 16px;
-	font-size: 24px;
-	line-height: 1.33;
-	border-radius: 35px;
-}
-
-a.nav-link d-flex {
-	padding-left: 5px;
-}
-
-.fa-hand-point-right {
-	font-size: 1rem;
-	margin-left: 6%;
-}
-
-a.nav-link p {
-	padding-left: 5px;
-	font-size: 15px;
-}
+	.btn-circle {
+		width: 30px;
+		height: 30px;
+		text-align: center;
+		padding: 6px 0;
+		font-size: 12px;
+		line-height: 1.428571429;
+		border-radius: 15px;
+	}
+	
+	span.btn-circle a {
+		color: white;
+	}
+	
+	.btn-circle.btn-lg {
+		width: 40px;
+		height: 40px;
+		padding: 10px 16px;
+		font-size: 18px;
+		line-height: 1.33;
+		border-radius: 25px;
+	}
+	
+	.btn-circle.btn-xl {
+		width: 50px;
+		height: 50px;
+		padding: 10px 16px;
+		font-size: 24px;
+		line-height: 1.33;
+		border-radius: 35px;
+	}
+	
+	a.nav-link d-flex {
+		padding-left: 5px;
+	}
+	
+	.fa-hand-point-right {
+		font-size: 1rem;
+		margin-left: 6%;
+	}
+	
+	a.nav-link p {
+		padding-left: 5px;
+		font-size: 15px;
+	}
 </style>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
