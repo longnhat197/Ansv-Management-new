@@ -32,10 +32,6 @@
 <link rel="stylesheet"
 	href="<c:url value="/assets/user/vendor/icheck-bootstrap/icheck-bootstrap.min.css" />">
 
-<!-- JQVMap -->
-<link rel="stylesheet"
-	href="<c:url value="/assets/user/vendor/jqvmap/jqvmap.min.css" />">
-
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="<c:url value="/assets/user/dist/css/adminlte.min.css" />">
@@ -56,7 +52,8 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/user/vendor/datatables/css/bootstrap.css" />" />
 	<link rel="stylesheet" type="text/css" href="<c:url value="/assets/user/vendor/datatables/css/dataTables.bootstrap4.min.css" />" />
 	
-	<script type="text/javascript" src="<c:url value="/assets/user/vendor/datatables/js/jquery-3.5.1.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/assets/user/vendor/jquery/jquery.js" />"></script>
+	<%-- <script type="text/javascript" src="<c:url value="/assets/user/vendor/datatables/js/jquery-3.5.1.js" />"></script> --%>
 	<script type="text/javascript" src="<c:url value="/assets/user/vendor/datatables/js/jquery.dataTables.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/assets/user/vendor/datatables/js/dataTables.bootstrap4.min.js" />"></script>
 	
@@ -121,14 +118,11 @@
 	<!-- ChartJS -->
 	<script
 		src="<c:url value="/assets/user/vendor/chart.js/Chart.min.js" />"></script>
+		
 	<!-- Sparkline -->
 	<script
 		src="<c:url value="/assets/user/vendor/sparklines/sparkline.js" />"></script>
-	<!-- JQVMap -->
-	<script
-		src="<c:url value="/assets/user/vendor/jqvmap/jquery.vmap.min.js" />"></script>
-	<script
-		src="<c:url value="/assets/user/vendor/jqvmap/maps/jquery.vmap.usa.js" />"></script>
+		
 	<!-- jQuery Knob Chart -->
 	<script
 		src="<c:url value="/assets/user/vendor/jquery-knob/jquery.knob.min.js" />"></script>
@@ -150,7 +144,5 @@
 	<script src="<c:url value="/assets/user/dist/js/adminlte.js" />"></script>
 	<!-- AdminLTE for demo purposes -->
 	<script src="<c:url value="/assets/user/dist/js/demo.js" />"></script>
-	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="<c:url value="/assets/user/dist/js/pages/dashboard.js" />"></script>
 </body>
 </html>
