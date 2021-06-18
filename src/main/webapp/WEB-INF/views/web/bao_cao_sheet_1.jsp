@@ -8,7 +8,7 @@
 <script type="text/javascript">
 	$( document ).ready(function() {
 		let params = (new URL(document.location)).searchParams;
-		let id = parseInt(params.get("id"));
+		let id = parseInt(params.get("id_p1"));
 		return_id(id);
 		
 	});

@@ -160,9 +160,9 @@
 				                /* console.log(item); */
 				                for (i = 0; i < dem; i++) {
 				                    let row = 	'<li class="nav-item">' + 
-				                    				'<a href="vnpt_tinh_thanh_pho?id='+(i+1)+'" class="nav-link d-flex"' + 
-				                    					'id="sheet1-'+(i+1)+'" data-toggle="tooltip"  data-html="true"' + 
-				                    					'onclick = "return menu_link('+(i+1)+') " title="<p>Tổng số dự án: 2</p>' + 
+				                    				'<a href="vnpt_tinh_thanh_pho?kh_s1_id='+item[i]+'" class="nav-link d-flex"' + 
+				                    					'id="sheet1-'+item[i]+'" data-toggle="tooltip"  data-html="true"' + 
+				                    					'onclick = "return menu_link('+item[i]+') " title="<p>Tổng số dự án: 2</p>' + 
 				                    					'<p>Số dự án chậm tiến độ: 0</p><p>Số dự án bị hủy: 0</p>">' + 
 				                    					'<i class="nav-icon far fa-hand-point-right" style="font-size: 1rem; margin-left: 6%;"></i>' + 
 			                    						'<p style="font-size: 13px;">' + 
@@ -179,7 +179,7 @@
 				            });
 				            function menu_link(id) {
 				        		//window.open("vnpt_tinh_thanh_pho?id="+id); //Link đến trang khác với tab mới
-				        		window.location.href = "vnpt_tinh_thanh_pho?id="+id; //Link đến trang khác ở tab hiện tại
+				        		window.location.href = "vnpt_tinh_thanh_pho?kh_s1_id="+id; //Link đến trang khác ở tab hiện tại
 				        	  	//location.replace("https://www.w3schools.com"); //Link đến trang khác thay thế trang hiện tại
 				        	};
 						</script>
@@ -396,36 +396,37 @@
 	                var project1 = Object.values(groupedPIC); // Lọc theo value của object
 	                
 	                for (i = 0; i < dem1; i++) {
-	                    let row ='<li class="nav-item"><a href="#" class="nav-link d-flex"> '
-	                    +'<i class="nav-icon fas fa-user"></i>'
-	                    +'<p>'
-	                    +item1[i]  + '<i class="fas fa-angle-left right"></i> '
-	                    +'<span class="badge badge-info right">2</span>'
-	                    +'</p>'
-	                    +'</a>'	
-	                    +'<ul class="nav nav-treeview " id="pic1-'+i+'" style="font-size: 13px;">'
-	                    +'</ul>'
-	                    +'</li>'
-	                            ;
+	                    let row ='<li class="nav-item"><a href="#" class="nav-link d-flex">'+
+	                    		 	 '<i class="nav-icon fas fa-user"></i>'+
+	                    		 	 '<p>' +item1[i] + 
+		                    		 	 '<i class="fas fa-angle-left right"></i>'+
+		                    		 	 '<span class="badge badge-info right">2</span>'+
+		                    		 '</p>'+
+		                    		 '</a>'+
+		                    		 '<ul class="nav nav-treeview " id="pic1-'+i+'" style="font-size: 13px;">'+
+		                    		 '</ul>'+
+		                    	 '</li>';
 	                    data_pci_sheet_1.innerHTML += row;
 	                    var detai_pci1 = document.getElementById("pic1-" + i);
 	                    for (j = 0; j < project1[i].length; j++) {
 	                    	
-	                        let row2 = '<li class="nav-item "><a href="#-'+project1[i][j]["STT"]+'" target="_blank" onclick = "return project_link_sheet_1('+project1[i][j]["STT"]+') " class="nav-link d-flex">'
-	                        +'<i class="far fa-hand-point-right nav-icon" style="font-size: 1rem; margin-left: 6%;"></i>'
-	                        +'<p>'
-	                        +project1[i][j]["Dự án/Gói thầu"]
-	                        +'</p>'
-	                        +'</a>'
-	                        +'</li>'
-	                    ;
+	                        let row2 = '<li class="nav-item ">'+
+	                        				'<a href="#-'+project1[i][j]["STT"]+'"'+ 
+	                        					'target="_blank" onclick = "return project_link_sheet_1('+project1[i][j]["STT"]+') "'+
+	                        					'class="nav-link d-flex" id="project1-'+project1[i][j]["STT"]+'">' +
+	                        				'<i class="far fa-hand-point-right nav-icon" style="font-size: 1rem; margin-left: 6%;"></i>' +
+	                        				'<p>'+
+	                        					project1[i][j]["Dự án/Gói thầu"]+
+					                        '</p>'+
+					                        '</a>' +
+					                     '</li>';
 	                        detai_pci1.innerHTML += row2;
 	                    }
 
 	                }
 	            });
 	            function project_link_sheet_1(id) {
-	        		window.open("bao_cao_sheet_1?id="+id); //Link đến trang khác với tab mới
+	        		window.open("bao_cao_sheet_1?id_p1="+id); //Link đến trang khác với tab mới
 	        		//window.location.href = "http://www.w3schools.com"; //Link đến trang khác ở tab hiện tại
 	        	  	//location.replace("https://www.w3schools.com"); //Link đến trang khác thay thế trang hiện tại
 	        	}

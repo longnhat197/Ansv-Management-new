@@ -19,7 +19,7 @@ color: #fff;}
 <script type="text/javascript">
 	$( document ).ready(function() {
 		let params = (new URL(document.location)).searchParams;
-		let id = parseInt(params.get("id"));
+		let id = params.get("kh_s1_id");
 		return_id(id);
 	});
 </script>
@@ -56,10 +56,8 @@ color: #fff;}
 				                };
 				     var groupedPeople = groupArrayOfObjects(json, "Khách hàng");
 				     
-				     var title_key = Object.keys(groupedPeople);
-                     let row = title_key[id-1];
 	            	  
-	            	   title.innerHTML +=row;
+	            	   title.innerHTML += id;
                      function format_date(x) {
                      	let date = new Date("1899-12-30");
              			date.setDate(date.getDate() + x);
@@ -72,10 +70,11 @@ color: #fff;}
              				return date.toLocaleDateString();
              			}
      				}
+                     console.log(id);
      				
                      json.forEach((item) => {
                      
-                         if (item["MKH"] == id) {
+                         if (item["Khách hàng"] == id) {
                         	 
                          	/* console.log(item);  */
                              idx++;

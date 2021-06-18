@@ -203,7 +203,7 @@
 	});
 		
 	function project_link(id) {
-		window.open("bao_cao_sheet_1?id="+id); //Link đến trang khác với tab mới
+		window.open("bao_cao_sheet_1?id_p1="+id); //Link đến trang khác với tab mới
 		//window.location.href = "http://www.w3schools.com"; //Link đến trang khác ở tab hiện tại
 	  	//location.replace("https://www.w3schools.com"); //Link đến trang khác thay thế trang hiện tại
 	}
