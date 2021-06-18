@@ -159,21 +159,21 @@
 				                var item = Object.keys(groupedPeople);
 				                /* console.log(item); */
 				                for (i = 0; i < dem; i++) {
-				                    let row = '<li class="nav-item"><a href="vnpt_tinh_thanh_pho?id='+(i+1)+'"'
-										+'class="nav-link d-flex" id="sheet1-'+(i+1)+'" data-toggle="tooltip"  data-html="true" onclick = "return menu_link('+(i+1)+') "'
-											+'title="'
-										+'<p>Tổng số dự án: 2</p>'
-										+'<p>Số dự án chậm tiến độ: 0</p>'
-										+'<p>Số dự án bị hủy: 0</p>">'
-												+'<i class="nav-icon far fa-hand-point-right" style="font-size: 1rem; margin-left: 6%;"></i>'
-												+'<p style="font-size: 13px;">'
-													+item[i] 
-													<!-- <i class="right fas fa-angle-left"></i> -->
-													+ ' <span class="badge badge-pill badge-danger">0</span>' 
-													+ ' <span class="badge badge-pill badge-warning">0</span>' 
-													+ ' <span class="badge badge-pill badge-secondary">2</span> / <b>2</b>'
-												+'</p>'
-										+'</a> </li>';
+				                    let row = 	'<li class="nav-item">' + 
+				                    				'<a href="vnpt_tinh_thanh_pho?id='+(i+1)+'" class="nav-link d-flex"' + 
+				                    					'id="sheet1-'+(i+1)+'" data-toggle="tooltip"  data-html="true"' + 
+				                    					'onclick = "return menu_link('+(i+1)+') " title="<p>Tổng số dự án: 2</p>' + 
+				                    					'<p>Số dự án chậm tiến độ: 0</p><p>Số dự án bị hủy: 0</p>">' + 
+				                    					'<i class="nav-icon far fa-hand-point-right" style="font-size: 1rem; margin-left: 6%;"></i>' + 
+			                    						'<p style="font-size: 13px;">' + 
+			                    							item[i] + 
+			                    							' <span class="badge badge-pill badge-danger">0</span>' + 
+				                    						' <span class="badge badge-pill badge-warning">0</span>' + 
+				                    						' <span class="badge badge-pill badge-secondary">2</span> / ' + 
+				                    						'<b>2</b>' + 
+				                    					'</p>' + 
+					                    			'</a>' + 
+					                    		'</li>';
 				                    data_sheet_1.innerHTML += row;
 				                }
 				            });
