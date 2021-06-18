@@ -1,9 +1,11 @@
 $(document).ready(function(){
+
+	
 	
     /*Active menu báo cáo 1 theo khách hàng*/
     let params = (new URL(document.location)).searchParams;
 	let kh_s1_id = params.get("kh_s1_id");
-	console.log(params);
+	
 	if (kh_s1_id) {
 		var sheet1_id ="sheet1-"+kh_s1_id; 
 		
@@ -30,3 +32,29 @@ $(document).ready(function(){
 	  	$('[data-toggle="tooltip"]').tooltip()
 	})
 });
+
+ function format(value){ 
+	if(value == 'x' ||value =="null" || value =="" || typeof value === 'undefined'){
+		return " ";
+	}else{
+	return value;
+     }		
+}
+
+function format_date(x) {
+	 
+ 	let date = new Date("1899-12-30");
+	date.setDate(date.getDate() + x);
+	if(x=="x" || x==""){
+		return "";
+	}else if(typeof x === 'undefined'){
+		return "";
+	}
+	else if(typeof x === 'string') {
+		return x;
+	}
+	else {
+		
+		return date.toLocaleDateString();
+	}
+}

@@ -92,15 +92,54 @@
 				<tr>
 					<td class="font-size-thong-ke pt-1 pb-1">BÁO CÁO VƯỚNG MẮC TUẦN 4-THÁNG 4</td>
 					<td class="pt-0 pb-1">
-						<span class="badge badge-info right">1</span>
-						<span class="badge badge-warning right">2</span>
-						<span class="badge badge-danger right">3</span>
+						<span class="badge badge-info right" id="u1_t1_s1"></span>
+						<span class="badge badge-warning right " id="u1_t2_s1"></span>
+						<span class="badge badge-danger right" id="u1_t3_s1"></span>
 					</td>
 					<td class="pt-0 pb-1">
-						<span class="badge badge-info right">1</span>
-						<span class="badge badge-warning right">2</span>
-						<span class="badge badge-danger right">3</span>
+						<span class="badge badge-info right" id="u2_t1_s1"></span>
+						<span class="badge badge-warning right" id="u2_t2_s1"></span>
+						<span class="badge badge-danger right" id="u2_t3_s1"></span>
 					</td>
+					<script>
+					var u1_t1_s1 = document.getElementById('u1_t1_s1');
+					var u1_t2_s1 = document.getElementById('u1_t2_s1');
+					var u1_t3_s1 = document.getElementById('u1_t3_s1');
+					var a=0,b=0,c=0;
+					var u2_t1_s1 = document.getElementById('u2_t1_s1');
+					var u2_t2_s1 = document.getElementById('u2_t2_s1');
+					var u2_t3_s1 = document.getElementById('u2_t3_s1');
+					var d=0,e=0,f=0;
+					 $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
+						 json.forEach(item=>{
+							 if(item["Priority"]=="High"){ 
+								if(item["Mức độ tình trạng"]=="Hủy"){
+									a++;
+								}else if(item["Mức độ tình trạng"]=="Đang hoàn thành"){
+									b++;
+								}else if(item["Mức độ tình trạng"]=="Chậm tiến độ")	{
+									c++;
+								}
+							 }
+							 else if(item["Priority"]=="High" || item["Priority"]=="x"){
+								 if(item["Mức độ tình trạng"]=="Hủy"){
+										d++;
+									}else if(item["Mức độ tình trạng"]=="Đang hoàn thành"){
+										e++;
+									}else if(item["Mức độ tình trạng"]=="Chậm tiến độ")	{
+										f++;
+									}
+							 }
+							
+						 })
+						 u1_t1_s1.innerHTML = a;
+						 u1_t2_s1.innerHTML = b;
+						 u1_t3_s1.innerHTML = c;
+						 u2_t1_s1.innerHTML = d;
+						 u2_t2_s1.innerHTML = e;
+						 u2_t3_s1.innerHTML = f;
+					 });
+					</script>
 					<td class="pt-0 pb-1">
 						<span class="badge badge-info right">1</span>
 						<span class="badge badge-warning right">2</span>

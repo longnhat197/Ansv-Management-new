@@ -46,7 +46,8 @@ color: #fff;}
         		 var title = document.getElementById('title');
                  var data_ul = document.getElementById("data_ul");
                  var detail_data = document.getElementById("detail");
-                 $.getJSON('<c:url value="/assets/user/upload/data-test.json"/>', function(json) {
+                 
+                 $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
                 	 var idx = 0;
                 function groupArrayOfObjects(list, key) {
 				                    return list.reduce(function(rv, x) {
@@ -56,29 +57,12 @@ color: #fff;}
 				                };
 				     var groupedPeople = groupArrayOfObjects(json, "Khách hàng");
 				     
-	            	  
-	            	   title.innerHTML += id;
-                     function format_date(x) {
-                     	let date = new Date("1899-12-30");
-             			date.setDate(date.getDate() + x);
-             			if(x=="x" || x==""){
-             				return "x";
-             			}else if(typeof x === 'undefined'){
-             				return "";
-             			}
-             			else{
-             				return date.toLocaleDateString();
-             			}
-     				}
-                     console.log(id);
-     				
+	            	 title.innerHTML += id;
+        
                      json.forEach((item) => {
-                     
                          if (item["Khách hàng"] == id) {
-                        	 
                          	/* console.log(item);  */
                              idx++;
-                 
                              let row1 = '<li class="nav-item">'+
                   			'<a class="nav-link" href="#'+idx +'" onclick=" return class_fade('+idx+')">'+item['Dự án/Gói thầu']+'</a>'
                      		+'</li>';
@@ -88,11 +72,11 @@ color: #fff;}
                                 
                                  	row2 +='<div id="'+idx+'" class="container tab-pane active" name="abc"><br>'
                                         +'<div>' 
-                                             +'<p>Người phụ trách: '+item["PIC"]+'</p>'
-                                             +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
-                                             +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
-                                             +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
-                                             +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
+                                             +'<p>Người phụ trách: '+format(item["PIC"])+'</p>'
+                                             +'<p>Tên dự án: '+format(item["Dự án/Gói thầu"])+'</p>'
+                                             +'<p>Phạm vi cung cấp: '+format(item["Phạm vi cung cấp"])+'</p>'
+                                             +'<p>Tổng giá trị: '+format(item["Tổng giá trị"])+'</p>'
+                                             +'<p>Mức độ ưu tiên: '+format(item["Priority"])+'</p>'
                                              
                                          +'</div>'
                                          +'<div class="table-responsive">'
@@ -124,19 +108,19 @@ color: #fff;}
                                                      +'<td>'+format_date(item["PAC"])+'</td>'
                                                      +'<td>'+format_date(item["FAC"])+'</td>'
                                                      +'<!--Kế hoạch nghiệm thu -->'
-                                                     +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
+                                                     +'<td>'+format(item["Số tiền thanh toán tạm ưng"])+'</td>'
                                                      +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
                                                     
                                                      <!-- Thanh toán tạm ứng -->
-                                                     +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
+                                                     +'<td>'+format(item["Số tiền thanh toán DAC"])+'</td>'
                                                      +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
                                                      
                                                      <!-- Thanh toán DAC -->
-                                                     +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
+                                                     +'<td>'+format(item["Số tiền Thanh toán PAC"])+'</td>'
                                                      +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
                                                      
                                                      <!-- Thanh toán PAC -->
-                                                     +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
+                                                     +'<td>'+format(item["Số tiền Thanh toán FAC"])+'</td>'
                                                      +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
                                                      
                                                      <!-- Thanh toán FAC -->
@@ -146,11 +130,11 @@ color: #fff;}
                                          +'<div class="d-flex">'
                                              +'<div style="width: 70%;">'
                                                  +'<p>Tình trạng:</p>'
-                                                 +'<p> '+item["Tình trạng"]+'</p>'
+                                                 +'<p> '+format(item["Tình trạng"])+'</p>'
                                              +'</div>'
                                              +'<div class="pl-5">'
                                                  +'<p>Kết quả thực hiện kế hoạch:</p>'
-                                                 +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
+                                                 +'<p> '+format(item["Kết quả thực hiện kế hoạch"])+'</p>'
                                              +'</div>'
                                          +'</div>'
                                      +'</div>'
@@ -159,11 +143,11 @@ color: #fff;}
                              } else {
                                  row2 += '<div id="'+idx+'" class="container tab-pane fade" name="abc"><br>'
                                      +'<div>' 
-                                     +'<p>Người phụ trách: '+item["PIC"]+'</p>'
-                                     +'<p>Tên dự án: '+item["Dự án/Gói thầu"]+'</p>'
-                                     +'<p>Phạm vi cung cấp: '+item["Phạm vi cung cấp"]+'</p>'
-                                     +'<p>Tổng giá trị: '+item["Tổng giá trị"]+'</p>'
-                                     +'<p>Mức độ ưu tiên: '+item["Priority"]+'</p>'
+                                     +'<p>Người phụ trách: '+format(item["PIC"])+'</p>'
+                                     +'<p>Tên dự án: '+format(item["Dự án/Gói thầu"])+'</p>'
+                                     +'<p>Phạm vi cung cấp: '+format(item["Phạm vi cung cấp"])+'</p>'
+                                     +'<p>Tổng giá trị: '+format(item["Tổng giá trị"])+'</p>'
+                                     +'<p>Mức độ ưu tiên: '+format(item["Priority"])+'</p>'
                                      
                                  +'</div>'
                                  +'<div class="table-responsive">'
@@ -195,19 +179,19 @@ color: #fff;}
                                              +'<td>'+format_date(item["PAC"])+'</td>'
                                              +'<td>'+format_date(item["FAC"])+'</td>'
                                              +'<!--Kế hoạch nghiệm thu -->'
-                                             +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
+                                             +'<td>'+format(item["Số tiền thanh toán tạm ưng"])+'</td>'
                                              +'<td>'+format_date(item["Kế hoạch tạm ứng"])+'</td>'
                                             
                                              <!-- Thanh toán tạm ứng -->
-                                             +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
+                                             +'<td>'+format(item["Số tiền thanh toán DAC"])+'</td>'
                                              +'<td>'+format_date(item["Kế hoạch Thanh toán DAC"])+'</td>'
                                              
                                              <!-- Thanh toán DAC -->
-                                             +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
+                                             +'<td>'+format(item["Số tiền Thanh toán PAC"])+'</td>'
                                              +'<td>'+format_date(item["Kế hoạch Thanh toán PAC"])+'</td>'
                                              
                                              <!-- Thanh toán PAC -->
-                                             +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
+                                             +'<td>'+format(item["Số tiền Thanh toán FAC"])+'</td>'
                                              +'<td>'+format_date(item["Kế hoạch Thanh toán FAC"])+'</td>'
                                              
                                              <!-- Thanh toán FAC -->
@@ -217,11 +201,11 @@ color: #fff;}
                                  +'<div class="d-flex">'
                                      +'<div style="width: 70%;">'
                                          +'<p>Tình trạng:</p>'
-                                         +'<p> '+item["Tình trạng"]+'</p>'
+                                         +'<p> '+format(item["Tình trạng"])+'</p>'
                                      +'</div>'
                                      +'<div class="pl-5">'
                                          +'<p>Kết quả thực hiện kế hoạch:</p>'
-                                         +'<p> '+item["Kết quả thực hiện kế hoạch"]+'</p>'
+                                         +'<p> '+format(item["Kết quả thực hiện kế hoạch"])+'</p>'
                                      +'</div>'
                                  +'</div>'
                              +'</div>';

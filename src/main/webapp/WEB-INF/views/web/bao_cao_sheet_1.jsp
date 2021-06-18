@@ -42,23 +42,11 @@
 	function return_id(id) {
 		var title = document.getElementById('title');
 	       var detail_data = document.getElementById("detail_data");
+	      
 	       $.getJSON('<c:url value="/assets/user/upload/data-new.json"/>', function(json) {
 	           // console.log(json);
 	           
-	           function format_date(x) {
-               	let date = new Date("1899-12-30");
-       			date.setDate(date.getDate() + x);
-       			if(x=="x" || x==""){
-       				return "x";
-       			}else if(typeof x === 'undefined'){
-       				return "";
-       			}
-       			else{
-       				return date.toLocaleDateString();
-       			}
-	           }
 	           json.forEach(item => {
-	        	   
 	               if (item["STT"] == id) {
 	            	   let row =  item["Dự án/Gói thầu"];
 	            	   title.innerHTML += row;
@@ -69,15 +57,15 @@
 	                                   
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Dự án/Gói thầu</th>'
-	                                       +'<td>'+item["Dự án/Gói thầu"]+'</td>'
+	                                       +'<td>'+format(item["Dự án/Gói thầu"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Phạm vi cung cấp</th>'
-	                                       +'<td>'+item["Phạm vi cung cấp"]+'</td>'
+	                                       +'<td>'+format(item["Phạm vi cung cấp"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Tổng giá trị</th>'
-	                                       +'<td>'+item["Tổng giá trị"]+'</td>'
+	                                       +'<td>'+format(item["Tổng giá trị"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th rowspan="3">Kế hoạch nghiệm thu</th>'
@@ -95,7 +83,7 @@
 	                                   +'<tr>'
 	                                       +'<th rowspan="2">Thanh toán tạm ứng</th>'
 	                                       +'<th>Số tiền</th>'
-	                                       +'<td>'+item["Số tiền thanh toán tạm ưng"]+'</td>'
+	                                       +'<td>'+format(item["Số tiền thanh toán tạm ưng"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th>Kế hoạch</th>'
@@ -104,7 +92,7 @@
 	                                   +'<tr>'
 	                                       +'<th rowspan="2">Thanh toán DAC</th>'
 	                                       +'<th>Số tiền</th>'
-	                                       +'<td>'+item["Số tiền thanh toán DAC"]+'</td>'
+	                                       +'<td>'+format(item["Số tiền thanh toán DAC"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th>Kế hoạch</th>'
@@ -113,7 +101,7 @@
 	                                   +'<tr>'
 	                                       +'<th rowspan="2">Thanh toán PAC</th>'
 	                                       +'<th>Số tiền</th>'
-	                                       +'<td>'+item["Số tiền Thanh toán PAC"]+'</td>'
+	                                       +'<td>'+format(item["Số tiền Thanh toán PAC"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 
@@ -130,7 +118,7 @@
 	                                   +'<tr>'
 	                                       +'<th rowspan="2">Thanh toán FAC</th>'
 	                                       +'<th>Số tiền</th>'
-	                                       +'<td>'+item["Số tiền Thanh toán FAC"]+'</td>'
+	                                       +'<td>'+format(item["Số tiền Thanh toán FAC"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th>Kế hoạch</th>'
@@ -138,19 +126,19 @@
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Tình trạng</th>'
-	                                       +'<td>'+item["Tình trạng"]+'</td>'
+	                                       +'<td>'+format(item["Tình trạng"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Mức dộ ưu tiên</th>'
-	                                       +'<td>'+item["Priority"]+'</td>'
+	                                       +'<td>'+format(item["Priority"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Kết quả thực hiện kế hoạch</th>'
-	                                       +'<td>'+item["Kết quả thực hiện kế hoạch"]+'</td>'
+	                                       +'<td>'+format(item["Kết quả thực hiện kế hoạch"])+'</td>'
 	                                   +'</tr>'
 	                                   +'<tr>'
 	                                       +'<th colspan="2">Phụ trách</th>'
-	                                       +'<td>'+item["PIC"]+'</td>'
+	                                       +'<td>'+format(item["PIC"])+'</td>'
 	                                   +'</tr>'
 
 	                               +'</table>'
